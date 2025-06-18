@@ -15,10 +15,12 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "async": "2.0.1",
+    "axios": "^1.10.0",
     "bluebird": "3.4.1",
     "bunyan": "^1.8.1",
     "bunyan-blackhole": "1.1.1",
     "bunyan-format": "0.2.1",
+    "cheerio": "^1.1.0",
     "cors": "2.7.1",
     "coveralls": "2.11.12",
     "csv-parse": "1.1.7",
