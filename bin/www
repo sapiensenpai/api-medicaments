@@ -1,39 +1,14 @@
 #!/usr/bin/env node
-// vi: ft=javascript
 
-const bunyan = require('bunyan');
-const bunyanFormat = require('bunyan-format');
-const nconf = require('nconf');
-const Server = require('../api/server');
-const url = require('url');
+/** Launch script for Mon-Médicament API  */
+const http   = require('http');
+const app    = require('../api/server');    // ← exports the Express app
 
-nconf.env({
-  separator: '_'
-}).argv();
-nconf.defaults(require('../defaults'));
+// Render provides PORT; default to 3004 locally
+const port = process.env.PORT || 3004;
+app.set('port', port);
 
-const logger = bunyan.createLogger({
-  name: nconf.get('appname'),
-  level: nconf.get('log:level'),
-  stream: bunyanFormat({
-    outputMode: nconf.get('log:format')
-  })
-});
-
-const server = new Server({
-  port: nconf.get('port'),
-  logger: logger,
-  medicamentsPath: nconf.get('medicamentsPath'),
-  es: {
-    host: nconf.get('es:host'),
-    index: nconf.get('es:index')
-  }
-});
-
-server.start(function (err) {
-  if (err) {
-    logger.fatal({error: err}, 'cannot recover from previous errors. shutting down now. error was', err.stack);
-    setTimeout(process.exit.bind(null, 99), 10);
-  }
-  logger.info('Sever successfully started.');
+const server = http.createServer(app);
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
