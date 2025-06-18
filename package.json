@@ -16,7 +16,7 @@
   "dependencies": {
     "async": "2.0.1",
     "bluebird": "3.4.1",
-    "bunyan": "1.8.1",
+    "bunyan": "^1.8.1",
     "bunyan-blackhole": "1.1.1",
     "bunyan-format": "0.2.1",
     "cors": "2.7.1",
@@ -33,10 +33,10 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "proxyquire": "1.7.10",
     "istanbul": "0.4.4",
     "memorystream": "0.3.1",
-    "supertest": "2.0.0",
-    "mocha": "2.5.3"
+    "mocha": "2.5.3",
+    "proxyquire": "1.7.10",
+    "supertest": "2.0.0"
   }
 }
