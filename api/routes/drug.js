@@ -1,8 +1,11 @@
-const system = require('./../system')
-const medicaments = require('./../medicaments')
+const express = require('express');
+const router  = express.Router();
+const data    = require('../../data/drugs.json');
 
-exports.configure = function (app, options) {
-  app.use('/api', system(options));
-  app.use('/api/medicaments', medicaments(options));
+router.get('/:cis', (req, res) => {
+  const drug = data.find(d => d.cis === req.params.cis);
+  if (!drug) return res.status(404).json({ error: 'Not found' });
+  res.json(drug);
+});
 
-};
+module.exports = router;
