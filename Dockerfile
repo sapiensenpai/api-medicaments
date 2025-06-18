@@ -16,5 +16,6 @@ ADD ./import ./import
 RUN ./bin/import
 
 ADD ./api ./api
-
+# Run parser to convert BDPM text files to JSON
+RUN node ./bin/parse-bdpm.js
 CMD npm start
