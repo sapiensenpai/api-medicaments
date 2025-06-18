@@ -33,5 +33,5 @@ fs.readFileSync(compoFile, 'utf8')
   });
 
 // STEP 3: Save as drug.json
-fs.writeFileSync(output, JSON.stringify(Object.values(drugs), null, 2));
+fs.writeFileSync(output, JSON.stringify(Object.keys(drugs).map(key => drugs[key]), null, 2));
 console.log(`✅ Saved ${Object.keys(drugs).length} medications to drug.json`);
